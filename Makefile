@@ -18,4 +18,10 @@ stress-tests:
 clean:
 	$(SILENT)rm -f reports/*.json
 
-.PHONY: all smoke-tests integration-tests load-tests stress-tests clean
+format:
+	$(SILENT)npx prettier --write .
+
+check-format:
+	$(SILENT)npx prettier --check .
+
+.PHONY: all smoke-tests integration-tests load-tests stress-tests clean format check-format

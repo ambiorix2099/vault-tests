@@ -5,7 +5,5 @@
   "typeAcquisition": {
     "enable": true
   },
-  "types": [
-    "k6"
-  ]
+  "types": ["k6"]
 }

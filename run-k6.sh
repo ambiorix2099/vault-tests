@@ -5,7 +5,8 @@ set -e
 
 # Load .env if it exists
 if [ -f .env ]; then
-  export "$(grep -v '^#' .env | xargs)"
+  # shellcheck disable=SC2046
+  export $(grep -v '^#' .env | xargs)
 fi
 
 # Forward all arguments to k6

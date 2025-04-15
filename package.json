@@ -1,5 +1,11 @@
 {
   "devDependencies": {
-    "@types/k6": "^1.0.2"
+    "@types/k6": "^1.0.2",
+    "globals": "^16.0.0",
+    "prettier": "^3.5.3"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   }
 }
