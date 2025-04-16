@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { randomUserAgent } from '../lib/utils.js';
@@ -6,11 +8,12 @@ import { defaultOptions } from '../k6.config.js';
 // Required for k6 configuration setup, we blend in the default options...
 export let options = {
   ...defaultOptions,
+  vus: 10,
   stages: [
     { duration: '30s', target: 10 }, // ramp up
     { duration: '30s', target: 50 },
     { duration: '30s', target: 100 },
-    { duration: '1m', target: 200 },
+    { duration: '60s', target: 200 },
     { duration: '30s', target: 400 }, // peak stress
     { duration: '30s', target: 0 }, // ramp down
   ],
@@ -24,7 +27,6 @@ const vaultAddr = __ENV.VAULT_ADDR;
 const vaultToken = __ENV.VAULT_TOKEN;
 
 // The k6 test scenario, which each virtual user will run concurrently...
-// noinspection JSUnusedGlobalSymbols
 export default function () {
   for (const path of secrets) {
     const res = http.get(`${vaultAddr}/v1/${path}`, {
